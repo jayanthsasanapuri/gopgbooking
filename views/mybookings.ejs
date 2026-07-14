@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Bookings</title>
+    <link rel="stylesheet" href="/css/mybookings.css">
+    <link rel="stylesheet" href="/css/userNavbar.css">
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+<%- include('partials/navbar') %>
+<div class="booking-container">
+    <div class="booking-header">
+        <h1>My Bookings</h1>
+        <p>View all your confirmed PG bookings.</p>
+    </div>
+    <% if(bookings && bookings.length > 0){ %>
+        <div class="booking-list">
+        <% bookings.forEach(booking => { %>
+            <% if(booking.pgId){ %>
+                <%
+                    let statusClass = "status-upcoming";
+                    if(booking.bookingStatus === "Cancelled")
+                        statusClass = "status-cancelled";
+                    else if(booking.bookingStatus === "Completed")
+                        statusClass = "status-completed";
+                %>
+                <div class="booking-row">
+                    <img
+                        src="<%= booking.pgId.imageUrl %>"
+                        alt="<%= booking.pgId.pgName %>"
+                        class="booking-thumb"
+                    >
+                    <div class="booking-main">
+                        <div class="booking-title-row">
+                            <h2>
+                                <%= booking.pgId.pgName %>
+                            </h2>
+                            <span class="status-pill <%= statusClass %>">
+                                <%= booking.bookingStatus %>
+                            </span>
+                        </div>
+                        <p class="booking-location">
+                            📍
+                            <%= booking.pgId.area %>,
+                            <%= booking.pgId.city %>
+                        </p>
+                        <div class="booking-meta">
+                            <div>
+                                <span>Check In</span>
+                                <strong>
+                                    <%= booking.checkIn.toDateString() %>
+                                </strong>
+                            </div>
+                            <div>
+                                <span>Check Out</span>
+                                <strong>
+                                    <%= booking.checkOut.toDateString() %>
+                                </strong>
+                            </div>
+                            <div>
+                                <span>Occupation</span>
+                                <strong>
+                                    <%= booking.occupation %>
+                                </strong>
+                            </div>
+                            <div>
+                                <span>Phone</span>
+                                <strong>
+                                    <%= booking.mobileNumber %>
+                                </strong>
+                            </div>
+                            <div>
+                                <span>Booked On</span>
+                                <strong>
+                                    <%= booking.createdAt.toDateString() %>
+                                </strong>
+                            </div>
+                            <div>
+                                <span>Payment</span>
+                                <strong>
+                                    <%= booking.paymentStatus %>
+                                </strong>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="booking-side">
+                        <strong class="price">
+                            ₹<%= booking.totalAmount %>
+                        </strong>
+                        <div class="booking-actions">
+                            <a
+                                href="/viewdetails/<%= booking.pgId._id %>"
+                                class="btn-solid"
+                            >
+                                Book Again
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <% } else { %>
+                <div class="booking-row unavailable">
+                    <div class="booking-main">
+                        <h2>
+                            PG Not Available
+                        </h2>
+                        <p>
+                            This PG has been removed by the admin.
+                        </p>
+                    </div>
+                </div>
+            <% } %>
+        <% }) %>
+        </div>
+    <% } else { %>
+        <div class="empty-booking">
+            <h2>
+                No Bookings Yet
+            </h2>
+            <p>
+                You haven't booked any PG yet.
+            </p>
+            <a
+                href="/card"
+                class="explore-btn"
+            >
+                Explore PGs
+            </a>
+        </div>
+    <% } %>
+</div>
+</body>
+</html>

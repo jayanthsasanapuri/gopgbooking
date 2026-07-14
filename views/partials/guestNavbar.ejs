@@ -1,0 +1,35 @@
+<nav class="navbar">
+    <div class="logo">
+        <h1>
+            <span class="green">gopg</span>booking
+        </h1>
+    </div>
+
+    <div class="nav-right">
+        <button class="book-btn"
+                onclick="window.location.href='/card'">
+            Book Now
+        </button>
+        <button class="login-btn"
+                onclick="window.location.href='/login'">
+            Login
+        </button>
+       <div class="location-menu">
+    <div class="location-btn">
+        🌍 Locations
+        <span class="arrow">▼</span>
+    </div>
+    <div class="location-dropdown">
+        <div class="dropdown-title">
+            📍 Available Locations
+        </div>
+        <% locations.forEach(location=>{ %>
+            <div class="city-item">
+                📍 <%= location %>
+            </div>
+      <% }) %>
+    </div>
+</div>
+    </div>
+
+</nav>

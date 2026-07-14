@@ -1,0 +1,13 @@
+<nav>
+
+<% if(isLoggedIn){ %>
+
+    <%- include('userNavbar') %>
+
+<% } else { %>
+
+   <%- include('guestNavbar') %>
+
+<% } %>
+
+</nav>

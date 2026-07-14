@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Confirm Booking | GoPGBooking</title>
+    <link rel="stylesheet" href="/css/userNavbar.css">
+    <link rel="stylesheet" href="/css/confirmBooking.css">
+</head>
+<body>
+    <%- include('./partials/userNavbar') %>
+    <div class="booking-container">
+        <a
+            href="/viewdetails/<%= pg._id %>"
+            class="back-btn"
+        >
+            ← Back
+        </a>
+        <div class="booking-card">
+            <h1>
+                Confirm Booking
+            </h1>
+            <p class="subtitle">
+                Complete your booking details
+                before proceeding to payment.
+            </p>
+            <form
+                action="/payment/<%= pg._id %>"
+                method="POST"
+                target="_blank"
+            >
+       <!-- PERSONAL INFORMATION -->
+               <div class="form-section">
+    <h2>Personal Information</h2>
+    <div class="input-grid">
+        <div>
+            <label>First Name
+              <span class="required">*</span>
+            </label>
+            <div class="input-wrap">
+                <div class="tooltip">
+                    This field is fixed and cannot be edited
+                </div>
+                <input
+                    type="text"
+                    class="locked"
+                    value="<%= user.firstName %>"
+                    readonly
+                >
+                <span class="lock-icon">🔒</span>
+            </div>
+        </div>
+        <div>
+            <label>Last Name
+              <span class="required">*</span>
+            </label>
+            <div class="input-wrap">
+                <div class="tooltip">
+                    This field is fixed and cannot be edited
+                </div>
+                <input
+                    type="text"
+                    class="locked"
+                    value="<%= user.lastName %>"
+                    readonly
+                >
+                <span class="lock-icon">🔒</span>
+            </div>
+        </div>
+    </div>
+    <div class="input-grid">
+        <div>
+            <label>Email Address
+              <span class="required">*</span>
+            </label>
+            <div class="input-wrap">
+                <div class="tooltip">
+                    This field is fixed and cannot be edited
+                </div>
+                <input
+                    type="email"
+                    class="locked"
+                    value="<%= user.email %>"
+                    readonly
+                >
+                <span class="lock-icon">🔒</span>
+            </div>
+        </div>
+        <div>
+            <label>Mobile Number
+              <span class="required">*</span>
+            </label>
+            <input type="tel" name="mobileNumber" placeholder="Enter mobile number"
+                required
+            >
+        </div>
+    </div>
+</div>
+ <!-- STAY DETAILS -->
+          <div class="form-section">
+    <h2>Stay Details</h2>
+    <div class="input-grid">
+        <div>
+            <label>Check In Date
+              <span class="required">*</span>
+            </label>
+            <input type="date" name="checkIn" required>
+        </div>
+        <div>
+            <label>Check Out Date
+               <span class="required">*</span>
+            </label>
+            <input
+                type="date"
+                name="checkOut"
+                required
+            >
+        </div>
+    </div>
+    <div class="input-grid">
+        <div>
+            <label>Occupation
+               <span class="required">*</span>
+            </label>
+            <select
+                name="occupation"
+                required
+            >
+                <option value="">
+                    Select Occupation
+                </option>
+                <option value="Student">
+                    Student
+                </option>
+                <option value="Working Professional">
+                    Working Professional
+                </option>
+                <option value="Tourist">
+                    Tourist
+                </option>
+                  <option value="Other">
+                    Other
+                </option>
+            </select>
+        </div>
+        <div>
+            <label>
+                Emergency Contact Number
+                 <span class="required">*</span>
+            </label>
+            <input
+                type="tel"
+                name="emergencyContact"
+                placeholder="Enter emergency contact"
+                required
+            >
+        </div>
+    </div>
+</div>
+ <!-- ADDITIONAL NOTES -->
+<div class="form-section">
+    <h2>Additional Notes</h2>
+    <textarea name="notes" rows="4"
+        placeholder="Any special requests or requirements..."
+    ></textarea>
+</div>
+ <!-- TERMS -->
+
+<div class="terms">
+
+      <input type="checkbox" required>
+                    <span>
+                        I agree to the Terms &
+                        Conditions
+                    </span>
+                </div>
+                <!-- SUBMIT -->
+                <button type="submit" class="continue-btn" >
+                    Continue to Payment
+                </button>
+                <div id="paymentMessage" class="payment-message" style="display:none;">
+            <div id="paymentContent">
+            </div>
+            </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

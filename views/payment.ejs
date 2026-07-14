@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Payment | GoPGBooking</title>
+    <link rel="stylesheet"
+          href="/css/payment.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="payment-container">
+        <a
+            href="/confirmbooking/<%= pg._id %>"
+            class="back-btn"
+        >
+            ← Back
+        </a>
+        <h1>
+            Complete Your Payment
+        </h1>
+        <p class="subtitle">
+            Secure your booking by completing
+            the payment below.
+        </p>
+        <div class="payment-timer">
+               <i class="fas fa-clock"></i>
+                    Session expires in
+                 <span id="countdown">10:00</span>
+                         </div>
+        <div class="payment-layout">
+            <!-- LEFT SIDE -->
+           <div class="payment-methods">
+    <div class="payment-method-selector">
+        <button
+            type="button"
+            class="method-btn active"
+            onclick="showMethod('upi')"
+        >
+            <i class="fas fa-mobile-alt"></i>
+            UPI
+        </button>
+        <button
+            type="button"
+            class="method-btn"
+            onclick="showMethod('card')"
+        >
+            <i class="far fa-credit-card"></i>
+            Card
+        </button>
+        <button
+            type="button"
+            class="method-btn"
+            onclick="showMethod('netbanking')"
+        >
+            <i class="fas fa-university"></i>
+            Net Banking
+        </button>
+    </div>
+    <!-- UPI SECTION -->
+    <div
+        id="upi-section"
+        class="payment-card"
+    >
+       <h2>
+            <i class="fas fa-qrcode"></i>
+            UPI Payment
+        </h2>
+        <div class="qr-code">
+            <img
+                src="https://api.qrserver.com/v1/create-qr-code/?size=220x220&data=https://example.com/pay"
+                alt="QR Code"
+            >
+        </div>
+        <p class="payment-note">
+            Scan using PhonePe, Google Pay,
+            Paytm or any UPI application.
+        </p>
+        <button
+            type="button"
+            class="secondary-btn"
+        >
+            Refresh QR
+        </button>
+    </div>
+    <!-- CARD SECTION -->
+    <div
+        id="card-section"
+        class="payment-card"
+        style="display:none;"
+    >
+        <h2>
+            <i class="far fa-credit-card"></i>
+            Card Payment
+        </h2>
+        <form
+            action="/payment-success/<%= pg._id %>"
+            method="POST"
+            target="_blank"
+        >
+            <input type="hidden" name="checkIn" value="<%= booking.checkIn %>">
+            <input type="hidden" name="checkOut" value="<%= booking.checkOut %>">
+            <input type="hidden" name="mobileNumber" value="<%= booking.mobileNumber %>">
+            <input type="hidden" name="occupation" value="<%= booking.occupation %>">
+            <input type="hidden" name="emergencyContact" value="<%= booking.emergencyContact %>">
+            <input type="hidden" name="notes" value="<%= booking.notes %>">
+            <div class="input-group">
+                <label>
+                    Card Number
+                </label>
+                <input
+                    type="text"
+                    placeholder="XXXX XXXX XXXX XXXX"
+                    required
+                >
+            </div>
+            <div class="input-group">
+                <label>
+                    Card Holder Name
+                </label>
+                <input
+                    type="text"
+                    placeholder="Name on Card"
+                    required
+                >
+            </div>
+            <div class="card-row">
+                <div class="input-group">
+                    <label>
+                        Expiry Date
+                    </label>
+                    <input
+                        type="text"
+                        placeholder="MM/YY"
+                        required
+                    >
+                </div>
+                <div class="input-group">
+                    <label>
+                        CVV
+                    </label>
+                    <input
+                        type="password"
+                        placeholder="***"
+                        required
+                    >
+
+                </div>
+            </div>
+            <button
+                type="submit"
+                class="pay-btn"
+            >
+                Pay ₹<%= totalAmount %>
+            </button>
+        </form>
+    </div>
+    <!-- NET BANKING -->
+    <div
+        id="netbanking-section"
+        class="payment-card"
+        style="display:none;"
+    >
+        <h2>
+            <i class="fas fa-university"></i>
+            Net Banking
+        </h2>
+        <div class="input-group">
+            <label>
+                Select Bank
+
+            </label>
+            <select>
+                <option>SBI</option>
+                <option>HDFC Bank</option>
+                <option>ICICI Bank</option>
+                <option>Axis Bank</option>
+                <option>Kotak Mahindra</option>
+            </select>
+        </div>
+        <button
+            type="button"
+            class="pay-btn"
+        >
+            Proceed To Bank
+
+        </button>
+    </div>
+</div>
+  <!-- RIGHT SIDE -->
+            <div class="summary-card">
+               <div class="summary-header">
+    <span class="secure-tag">
+        🔒 Secure Checkout
+    </span>
+    <h2>
+        Booking Summary
+    </h2>
+</div>
+ <div class="summary-row">
+
+                    <span>PG Name</span>
+                    <span>
+                        <%= pg.pgName %>
+                    </span>
+                </div>
+                <div class="summary-row">
+                    <span>Check In</span>
+                    <span>
+                        <%= booking.checkIn %>
+                    </span>
+                </div>
+                <div class="summary-row">
+                    <span>Check Out</span>
+                    <span>
+                        <%= booking.checkOut %>
+                    </span>
+                </div>
+                <div class="summary-row">
+                    <span>Duration</span>
+                    <span>
+                        <%= days %> Days
+                    </span>
+                </div>
+                <div class="summary-row">
+                    <span>Monthly Rent</span>
+                    <span>
+                        ₹<%= pg.rent %>
+                    </span>
+                </div>
+                <div class="summary-row">
+                    <span>Rent Amount</span>
+                    <span>
+                        ₹<%= rentAmount %>
+                    </span>
+                </div>
+                <div class="summary-row">
+                    <span>Security Deposit</span>
+                    <span>
+                        ₹<%= pg.deposit || 0 %>
+                    </span>
+                </div>
+                <hr>
+                <div class="summary-total">
+                    <span>Total Amount</span>
+                    <span>
+                        ₹<%= totalAmount %>
+                    </span>
+                </div>
+                <div class="payment-info">
+                      Includes rent charges and
+                      refundable security deposit.
+            </div>
+            <form action="/paymentsuccess/<%= pg._id %>" method="POST">
+    <input type="hidden" name="checkIn"  value="<%= booking.checkIn %>" >
+    <input type="hidden"name="checkOut" value="<%= booking.checkOut %>">
+    <input type="hidden" name="mobileNumber" value="<%= booking.mobileNumber %>">
+    <input type="hidden" name="occupation" value="<%= booking.occupation %>">
+    <input type="hidden" name="emergencyContact" value="<%= booking.emergencyContact %>">
+    <button type="submit" class="summary-pay-btn" >
+       Confirm Booking
+        <i class="fas fa-arrow-right"></i>
+    </button>
+</form>
+<div class="secure-payment">
+    <i class="fas fa-shield-alt"></i>
+    100% Secure Payment
+</div>
+            </div>
+        </div>
+    </div>
+<script>
+const pgId = "<%= pg._id %>";
+</script>
+<script src="/js/payment.js"></script>  
+</body>
+</html>

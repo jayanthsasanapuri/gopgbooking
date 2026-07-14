@@ -1,0 +1,116 @@
+<nav class="navbar">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <div class="logo">
+        <h1>
+            <span class="green">gopg</span>booking
+        </h1>
+    </div>
+
+    <div class="nav-links">
+        <ul>
+            <li><a href="/card">Home</a></li>
+            <li><a href="/mybookings">My Bookings</a></li>
+            <li><a href="/wishlist">Wishlist</a></li>
+        </ul>
+    </div>
+
+    <div class="nav-right">
+        <div class="profile-menu">
+
+            <button
+                class="profile-btn"
+                onclick="toggleDropdown(event)"
+            >
+
+                <div class="avatar">
+                    <%= user.firstName.charAt(0).toUpperCase() %>
+                </div>
+
+                <span class="profile-name">
+                    <%= user.firstName %>
+                </span>
+
+                <span
+                    class="arrow"
+                    id="dropdownArrow"
+                >
+                    ▼
+                </span>
+
+            </button>
+
+            <div
+                class="dropdown-menu"
+                id="profileDropdown"
+            >
+
+                <div class="dropdown-header">
+
+                    <div class="avatar large">
+                        <%= user.firstName.charAt(0).toUpperCase() %>
+                    </div>
+
+                    <div class="user-info">
+
+                        <h4>
+                            <%= user.firstName %> <%= user.lastName %>
+                        </h4>
+
+                        <p>
+                            <%= user.email %>
+                        </p>
+
+                    </div>
+
+                </div>
+                <hr>
+
+               <a href="/logout" class="logout-link">
+                   <i class="fa-solid fa-right-from-bracket"></i>
+                       Logout
+              </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<script>
+
+function toggleDropdown(event){
+
+    event.stopPropagation();
+
+    const dropdown =
+        document.getElementById('profileDropdown');
+
+    const arrow =
+        document.getElementById('dropdownArrow');
+
+    dropdown.classList.toggle('show');
+
+    arrow.classList.toggle('rotate');
+}
+
+document.addEventListener('click', function(){
+
+    const dropdown =
+        document.getElementById('profileDropdown');
+
+    const arrow =
+        document.getElementById('dropdownArrow');
+
+    if(dropdown){
+        dropdown.classList.remove('show');
+    }
+
+    if(arrow){
+        arrow.classList.remove('rotate');
+    }
+
+});
+
+</script>

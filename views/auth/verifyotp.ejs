@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Verify OTP - GoPGBooking</title>
+    <link rel="stylesheet" href="/css/auth.css">
+    <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+  <div class="auth-page">
+    <div class="auth-blob auth-blob-1"></div>
+    <div class="auth-blob auth-blob-2"></div>
+       <div class="auth-card">
+        <div class="auth-logo">
+            <h1>
+                <span class="green">gopg</span>booking
+            </h1>
+        </div>
+         <h2 class="auth-title">
+            Verify OTP
+        </h2>
+         <p class="auth-subtitle">
+
+            Enter the 6-digit OTP sent to
+
+            <br>
+
+            <strong><%= email %></strong>
+
+        </p>
+        <form
+            action="/verify-otp" method="POST" class="auth-form"
+        >
+
+            <input
+                type="hidden"
+                name="email"
+                value="<%= email %>"
+            >
+
+            <div class="otp-container">
+                <input class="otp-input" type="text" maxlength="1" required>
+                <input class="otp-input" type="text" maxlength="1" required>
+                <input class="otp-input" type="text" maxlength="1" required>
+                <input class="otp-input" type="text" maxlength="1" required>
+                <input class="otp-input" type="text" maxlength="1" required>
+                <input class="otp-input" type="text" maxlength="1" required>
+            </div>
+
+            <input
+                type="hidden"
+                id="otp"
+                name="otp"
+            >
+
+            <% if(error){ %>
+                <div class="auth-error">
+                    <%= error %>
+                </div>
+            <% } %>
+
+            <button type="submit" class="auth-btn">
+                Verify OTP
+            </button>
+        </form>
+        <div class="otp-footer">
+            Didn't receive the OTP?
+            <a href="/forgot-password">
+                Resend OTP
+            </a>
+        </div>
+    </div>
+</div>
+<script src="/js/verifyotp.js"></script>
+</body>
+</html>

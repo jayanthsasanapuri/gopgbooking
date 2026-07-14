@@ -1,0 +1,119 @@
+const mongoose = require('mongoose');
+
+const AdminSchema = new mongoose.Schema({
+    pgName:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    pgType:{
+        type:String,
+        required:true,
+        enum:[
+            'Premium',
+            'Luxury',
+            'Standard'
+        ]
+    },
+    description:{
+        type:String,
+        default:''
+    },
+    state:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    city:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    area:{
+        type:String,
+        default:''
+    },
+    landmark:{
+        type:String,
+        default:''
+    },
+    address:{
+        type:String,
+        required:true
+    },
+    rent:{
+        type:Number,
+        required:true
+    },
+    deposit:{
+        type:Number,
+        default:0
+    },
+    maintenance:{
+        type:Number,
+        default:0
+    },
+    roomType:{
+        type:String,
+        required:true,
+        enum:[
+            'Single Sharing',
+            'Double Sharing',
+            'Triple Sharing',
+            'Four Sharing'
+        ]
+    },
+
+    capacity:{
+        type:Number,
+        default:0
+    },
+    availableRooms:{
+        type:Number,
+        required:true
+    },
+    gender:{
+        type:String,
+        required:true,
+        enum:[
+            'Male',
+            'Female',
+            'Unisex'
+        ]
+    },
+    amenities:{
+        type:[String],
+        default:[]
+    },
+    imageUrl:{
+        type:String,
+        required:true
+    },
+    ownerName:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    phone:{
+        type:String,
+        required:true,
+        trim:true
+    },
+    email:{
+        type:String,
+        default:''
+    },
+    status:{
+        type:String,
+        enum:[
+            'Available',
+            'Full',
+            'Inactive'
+        ],
+        default:'Available'
+    }
+},{
+    timestamps:true
+});
+
+module.exports = mongoose.model('Admin', AdminSchema);

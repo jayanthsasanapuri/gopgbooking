@@ -1,0 +1,9 @@
+.landingbgimg{
+  height:120vh;
+  width:100%;
+  background-image: url('/image/landing-bg.jpg');
+  background-position:center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  
+}

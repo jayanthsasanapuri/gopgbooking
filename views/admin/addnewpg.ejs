@@ -1,0 +1,343 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New PG/Edit PG</title>
+    <link rel="stylesheet" href="/css/addnewpg.css">
+</head>
+<body>
+   
+
+<a href="/admin/dashboard" class="back-btn">
+    ← Dashboard
+</a>
+
+<div class="container">
+    <div class="page-header">
+        <h1>
+           <%= isEdit ? '✏️ Edit PG' : '🏢 Add New PG' %>
+        </h1>
+        <p>
+            Fill in the details below to publish a new PG listing on GoPGBooking.
+        </p>
+
+    </div>
+    <form action="<%= isEdit ? '/admin/editpg/' + pg._id : '/admin/addnewpg' %>" method="POST">
+        <!-- BASIC INFORMATION -->
+        <div class="form-card">
+            <h2>🏢 Basic Information</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>
+                        PG Name
+                        <span class="required">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        name="pgName"
+                        placeholder="Enter PG Name"
+                        value="<%=pg?pg.pgName:''%>"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        PG Type
+                        <span class="required">*</span>
+                    </label>
+
+                    <select name="pgType" required>
+                        <option value="">Select PG Type</option>
+                        <option value="Premium"
+                        <%= pg && pg.pgType === 'Premium' ? 'selected' : '' %>
+                        >Premium</option>
+                        <option value="Luxury"
+                        <%= pg && pg.pgType === 'Luxury' ? 'selected' : '' %>
+                        >Luxury</option>
+                        <option value="Standard"
+                        <%= pg && pg.pgType === 'Standard' ? 'selected' : '' %>
+                        >Standard</option>
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="form-group">
+                <label>Description</label>
+                <small class="helper-text">
+                    Describe facilities, room quality and nearby landmarks.
+                </small>
+                <textarea
+                    name="description"
+                    placeholder="Write PG description..."
+                ><%=pg?pg.description:''%></textarea>
+            </div>
+        </div>
+
+        <!-- LOCATION DETAILS -->
+
+        <div class="form-card">
+            <h2>📍 Location Details</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>
+                        State
+                        <span class="required">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        name="state"
+                        placeholder="Enter State"
+                        value="<%=pg?pg.state:''%>"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>
+                        City
+                        <span class="required">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        name="city"
+                        placeholder="Enter City"
+                        value="<%=pg?pg.city:''%>"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label>Area</label>
+                    <input
+                        type="text"
+                        name="area"
+                        placeholder="Area / Locality"
+                        value="<%=pg?pg.area:''%>"
+                    >
+                    
+                </div>
+
+                <div class="form-group">
+                    <label>Landmark</label>
+                    <input
+                        type="text"
+                        name="landmark"
+                        placeholder="Nearby Landmark"
+                        value="<%=pg?pg.landmark:''%>"
+                    >
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Full Address
+                    <span class="required">*</span>
+                </label>
+
+                <textarea
+                    name="address"
+                    placeholder="Enter complete address"
+                    required
+                ><%=pg?pg.address:''%></textarea>
+
+            </div>
+
+        </div>
+
+        <!-- PRICING -->
+        <div class="form-card">
+            <h2>💰 Pricing Details</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>
+                        Monthly Rent
+                        <span class="required">*</span>
+                    </label>
+                    <input
+                        type="number"
+                        name="rent"
+                        placeholder="Monthly Rent"
+                        value="<%=pg?pg.rent:''%>"
+                        required
+                    >
+                </div>
+                <div class="form-group">
+                    <label>Security Deposit</label>
+                    <input
+                        type="number"
+                        name="deposit"
+                        placeholder="Security Deposit"
+                        value="<%=pg?pg.deposit:''%>"
+                    >
+                </div>
+                <div class="form-group">
+                    <label>Maintenance Charges</label>
+                    <input
+                        type="number"
+                        name="maintenance"
+                        placeholder="Maintenance Charges"
+                        value="<%=pg?pg.maintenance:''%>"
+                    >
+                </div>
+            </div>
+        </div>
+        <!-- ROOM DETAILS -->
+        <div class="form-card">
+            <h2>🛏 Room Details</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>
+                        Room Type
+                        <span class="required">*</span>
+                    </label>
+                    <select name="roomType" required>
+                        <option value="">Select Room Type</option>
+                        <option value="Single Sharing" <%= pg && pg.roomType === 'Single Sharing' ? 'selected' : '' %>>Single Sharing</option>
+                        <option value="Double Sharing" <%= pg && pg.roomType === 'Double Sharing' ? 'selected' : '' %>>Double Sharing</option>
+                        <option value="Triple Sharing" <%= pg && pg.roomType === 'Triple Sharing' ? 'selected' : '' %>>Triple Sharing</option>
+                        <option value="Four Sharing" <%= pg && pg.roomType === 'Four Sharing' ? 'selected' : '' %>>Four Sharing</option>
+                    </select>
+
+                </div>
+                <div class="form-group">
+                    <label>Total Capacity</label>
+                    <input
+                        type="number"
+                        name="capacity"
+                        placeholder="Total Capacity"
+                        value="<%=pg?pg.capacity:''%>"
+                    >
+                </div>
+                <div class="form-group">
+                    <label>
+                        Available Rooms
+                        <span class="required">*</span>
+                    </label>
+                    <input
+                        type="number"
+                        name="availableRooms"
+                        placeholder="Available Rooms"
+                        value="<%=pg?pg.availableRooms:''%>"
+                        required
+                    >
+                </div>
+                <div class="form-group">
+                    <label>
+                        Gender Type
+                        <span class="required">*</span>
+                    </label>
+
+                    <select name="gender" required>
+                        <option value="">Select Gender Type</option>
+                        <option value="Male" <%= pg && pg.gender === 'Male' ? 'selected' : '' %>>Male</option>
+                        <option value="Female" <%= pg && pg.gender === 'Female' ? 'selected' : '' %>>Female</option>
+                        <option value="Unisex" <%= pg && pg.gender === 'Unisex' ? 'selected' : '' %>>Unisex</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <!-- AMENITIES -->
+        <div class="form-card">
+            <h2>✨ Amenities</h2>
+            <div class="checkbox-grid">
+                <label><input type="checkbox" name="amenities" value="WiFi"
+                    <%= pg && pg.amenities && pg.amenities.includes('WiFi') ? 'checked' : '' %>
+                    > WiFi</label>
+                <label><input type="checkbox" name="amenities" value="AC" 
+                    <%= pg && pg.amenities && pg.amenities.includes('AC') ? 'checked' : '' %>
+                    > AC</label>
+                <label><input type="checkbox" name="amenities" value="Meals"
+                    <%= pg && pg.amenities && pg.amenities.includes('Meals') ? 'checked' : '' %>
+                    > Meals</label>
+                <label><input type="checkbox" name="amenities" value="Gym"
+                    <%= pg && pg.amenities && pg.amenities.includes('Gym') ? 'checked' : '' %>
+                    > Gym</label>
+                <label><input type="checkbox" name="amenities" value="Laundry" 
+                    <%= pg && pg.amenities && pg.amenities.includes('Laundry') ? 'checked' : '' %>
+                    > Laundry</label>
+                <label><input type="checkbox" name="amenities" value="Parking"
+                    <%= pg && pg.amenities && pg.amenities.includes('Parking') ? 'checked' : '' %>
+                    > Parking</label>
+                <label><input type="checkbox" name="amenities" value="Security"
+                    <%= pg && pg.amenities && pg.amenities.includes('Security') ? 'checked' : '' %>
+                    > Security</label>
+                <label><input type="checkbox" name="amenities" value="CCTV"
+                    <%= pg && pg.amenities && pg.amenities.includes('CCTV') ? 'checked' : '' %>
+                    > CCTV</label>
+            </div>
+        </div>
+        <!-- IMAGES -->
+<div class="form-card">
+    <h2>🖼 Property Image</h2>
+    <div class="form-group">
+        <label>
+            Image URL
+            <span class="required">*</span>
+        </label>
+        <small class="helper-text">
+            Paste the image link that will be displayed on the PG card.
+        </small>
+        <input
+            type="url"
+            name="imageUrl"
+            placeholder="https://images.unsplash.com/photo-upload"
+            value="<%=pg?pg.imageUrl:''%>"
+            required
+        >
+    </div>
+</div>
+        <!-- OWNER DETAILS -->
+        <div class="form-card">
+            <h2>👤 Owner Details</h2>
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>
+                        Owner Name
+                        <span class="required">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        name="ownerName"
+                        placeholder="Owner Name"
+                        value="<%=pg?pg.ownerName:''%>"
+                        required
+                    >
+                </div>
+                <div class="form-group">
+                    <label>
+                        Phone Number
+                        <span class="required">*</span>
+                    </label>
+                    <input
+                        type="text"
+                        name="phone"
+                        placeholder="Phone Number"
+                        value="<%=pg?pg.phone:''%>"
+                        required
+                    >
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input
+                        type="email"
+                        name="email"
+                        placeholder="Email Address"
+                        value="<%=pg?pg.email:''%>"
+                    >
+                </div>
+            </div>
+        </div>
+        <button class="submit-btn" >
+            <%=isEdit?'Update PG':'Add PG'%>
+        </button>
+    </form>
+</div>
+</body>
+</html>
+

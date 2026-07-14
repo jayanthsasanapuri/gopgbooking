@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0">
+<title>Booking Confirmed | GoPGBooking</title>
+<link rel="stylesheet"
+      href="/css/paymentsuccess.css">
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+</head>
+<body>
+<div class="success-container">
+    <div class="success-card">
+        <div class="success-icon">
+            <i class="fas fa-check-circle"></i>
+        </div>
+        <h1>
+            Booking Confirmed!
+        </h1>
+        <p class="success-message">
+            Your payment has been completed successfully.
+            Your booking has been confirmed and saved.
+        </p>
+        <div class="booking-summary">
+            <h2>
+                Booking Details
+            </h2>
+            <div class="summary-row">
+                <span>
+                    Booking ID
+                </span>
+                <span>
+                    #<%= booking._id %>
+                </span>
+            </div>
+            <div class="summary-row">
+                <span>
+                    PG Name
+                </span>
+                <span>
+                    <%= pg.pgName %>
+                </span>
+            </div>
+            <div class="summary-row total-row">
+                <span>
+                    Amount Paid
+                </span>
+                <span>
+                    ₹<%= booking.totalAmount %>
+                </span>
+            </div>
+        </div>
+        <div class="email-info">
+            <i class="fas fa-envelope-circle-check"></i>
+            Booking confirmation, owner contact details,
+            room allocation and move-in instructions
+            will be sent to your registered email address.
+        </div>
+        <div class="action-buttons">
+            <a
+                href="/mybookings"
+                class="primary-btn"
+            >
+                <i class="fas fa-bookmark"></i>
+                My Bookings
+            </a>
+
+        </div>
+    </div>
+</div>
+</body>
+</html>

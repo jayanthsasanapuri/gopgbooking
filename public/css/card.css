@@ -1,0 +1,359 @@
+/* GoPGBooking Card Styles*/
+*,
+*::before,
+*::after{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+:root{
+    --green:#22c55e;
+    --green-dark:#16a34a;
+    --blue:#23498a;
+    --text:#1a1a2e;
+    --muted:#6b7280;
+    --bg:#f5f7fb;
+    --card:#fff;
+    --tag-bg:#e8fdf0;
+    --tag:#15803d;
+    --premium:#a855f7;
+    --luxury:#f59e0b;
+    --male:#3b82f6;
+    --female:#ec4899;
+    --unisex:#22c55e;
+    --shadow:0 4px 24px rgba(0,0,0,.08);
+    --shadow-hover:0 10px 32px rgba(0,0,0,.14);
+    --radius:16px;
+}
+body{
+    font-family:'Poppins',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    min-height:100vh;
+}
+/*  Welcome Banner*/
+.welcome-banner{
+    margin:25px;
+    padding:30px 35px;
+    border-radius:20px;
+    color:#fff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    background:linear-gradient(135deg,var(--blue),#3b82f6);
+    box-shadow:0 8px 25px rgba(0,0,0,.15);
+}
+.welcome-content h1{
+    font-size:2rem;
+    margin-bottom:10px;
+}
+.welcome-content p{
+    opacity:.9;
+}
+/* Filter Bar*/
+.filter-container{
+    margin:0 25px 25px;
+}
+.filter-bar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:12px;
+    align-items:center;
+    padding:18px;
+    background:#fff;
+    border-radius:16px;
+    box-shadow:0 4px 15px rgba(0,0,0,.08);
+}
+.filter-bar input,
+.filter-bar select{
+    height:46px;
+    min-width:170px;
+    padding:0 15px;
+    border:1px solid #d1d5db;
+    border-radius:10px;
+    background:#fff;
+    font:inherit;
+    outline:none;
+    transition:.2s;
+}
+.filter-bar input:focus,
+.filter-bar select:focus{
+    border-color:var(--green);
+    box-shadow:0 0 0 3px rgba(34,197,94,.15);
+}
+.filter-btn,
+.reset-btn{
+    height:46px;
+    padding:0 22px;
+    border:none;
+    border-radius:10px;
+    color:#fff;
+    font-weight:600;
+    cursor:pointer;
+    transition:.2s;
+    text-decoration:none;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+.filter-btn{
+    background:var(--green);
+}
+.filter-btn:hover{
+    background:var(--green-dark);
+}
+.reset-btn{
+    background:#ef4444;
+}
+.reset-btn:hover{
+    background:#dc2626;
+}
+/*  Cards Grid*/
+.cards-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill,minmax(320px,1fr));
+    gap:24px;
+    margin:20px 25px 30px;
+}
+/*Card*/
+.card{
+    background:var(--card);
+    border-radius:var(--radius);
+    overflow:hidden;
+    display:flex;
+    flex-direction:column;
+    box-shadow:var(--shadow);
+    transition:.25s;
+}
+.card:hover{
+    transform:translateY(-6px);
+    box-shadow:var(--shadow-hover);
+}
+/* Image*/
+.card-img-wrap{
+    position:relative;
+    height:240px;
+    overflow:hidden;
+    background:#e5e7eb;
+}
+.card-img-wrap img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    transition:.4s;
+}
+.card:hover img{
+    transform:scale(1.06);
+}
+/* Wishlist*/
+.wishlist-form{
+    position:absolute;
+    top:12px;
+    right:12px;
+    z-index:5;
+}
+.btn-wishlist{
+    width:42px;
+    height:42px;
+    border:none;
+    border-radius:50%;
+    background:rgba(255,255,255,.95);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    cursor:pointer;
+    box-shadow:0 4px 12px rgba(0,0,0,.18);
+    transition:all .3s ease;
+}
+.btn-wishlist:hover{
+    transform:scale(1.12);
+    background:#fff;
+}
+.btn-wishlist svg{
+    width:22px;
+    height:22px;
+}
+
+.btn-wishlist path{
+    fill:none;
+    stroke:#9ca3af;
+    stroke-width:2;
+    transition:all .3s ease;
+}
+.btn-wishlist.active path{
+    fill:#ef4444;
+    stroke:#ef4444;
+}
+
+.btn-wishlist:hover path{
+    fill:#ef4444;
+    stroke:#ef4444;
+}
+/* Badges*/
+.badge-type,
+.badge-gender{
+    position:absolute;
+    bottom:12px;
+    padding:5px 12px;
+    border-radius:8px;
+    color:#fff;
+    font-size:.7rem;
+    font-weight:700;
+    text-transform:uppercase;
+}
+.badge-type{left:12px;}
+.badge-gender{right:12px;}
+.badge-premium{background:var(--premium);}
+.badge-luxury{background:var(--luxury);}
+.badge-male{background:var(--male);}
+.badge-female{background:var(--female);}
+.badge-unisex{background:var(--unisex);}
+/*  Card Body*/
+.card-body{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    padding:18px;
+}
+.card-title{
+    font-size:1.15rem;
+    font-weight:700;
+    margin-bottom:6px;
+}
+.card-location{
+    display:flex;
+    align-items:center;
+    gap:5px;
+    color:var(--muted);
+    font-size:.82rem;
+    margin-bottom:12px;
+}
+/*  Amenities Tags */
+.tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-bottom:18px;
+}
+.tag{
+    padding:4px 10px;
+    border-radius:20px;
+    background:var(--tag-bg);
+    color:var(--tag);
+    font-size:.72rem;
+    font-weight:600;
+}
+/* Footer*/
+.card-footer{
+    margin-top:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+}
+.price-wrap{
+    display:flex;
+    flex-direction:column;
+}
+.price-label{
+    font-size:.72rem;
+    color:var(--muted);
+}
+.price{
+    font-size:1.2rem;
+    font-weight:700;
+}
+.price span{
+    font-size:.75rem;
+    color:var(--muted);
+}
+/*  View Button*/
+.btn-view{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    padding:11px 20px;
+    border-radius:10px;
+    background:var(--green);
+    color:#fff;
+    font-size:.85rem;
+    font-weight:600;
+    text-decoration:none;
+    transition:.2s;
+}
+.btn-view:hover{
+    background:var(--green-dark);
+}
+/*  Admin Actions*/
+.admin-actions{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+}
+.btn-edit,
+.btn-delete{
+    padding:10px 14px;
+    border:none;
+    border-radius:8px;
+    color:#fff;
+    font-size:.8rem;
+    font-weight:600;
+    text-decoration:none;
+    cursor:pointer;
+    transition:.2s;
+}
+.btn-edit{
+    background:#2563eb;
+}
+.btn-edit:hover{
+    background:#1d4ed8;
+}
+.btn-delete{
+    background:#ef4444;
+}
+.btn-delete:hover{
+    background:#dc2626;
+}
+/*Responsive */
+@media(max-width:1100px){
+    .cards-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:900px){
+    .welcome-banner{
+        flex-direction:column;
+        align-items:flex-start;
+        gap:15px;
+    }
+    .filter-bar{
+        flex-direction:column;
+        align-items:stretch;
+    }
+    .filter-bar input,
+    .filter-bar select,
+    .filter-btn,
+    .reset-btn{
+        width:100%;
+    }
+}
+@media(max-width:700px){
+    .cards-grid{
+        grid-template-columns:1fr;
+        margin:20px 15px 25px;
+    }
+    .welcome-banner{
+        margin:15px;
+        padding:24px;
+    }
+    .welcome-content h1{
+        font-size:1.6rem;
+    }
+    .filter-container{
+        margin:0 15px 20px;
+    }
+    .card-img-wrap{
+        height:220px;
+    }
+}

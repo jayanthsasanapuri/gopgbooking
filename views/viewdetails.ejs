@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= pg.pgName %> | GoPGBooking</title>
+
+    <link rel="stylesheet" href="/css/userNavbar.css">
+    <link rel="stylesheet" href="/css/viewDetails1.css">
+    <link rel="stylesheet" href="/css/viewDetails2.css">
+</head>
+<body>
+    <%- include('./partials/userNavbar') %>
+        <div class="back-top">
+    <a
+        href="/card"
+        class="back-btn"
+    >
+        ← Back
+    </a>
+</div>
+    <div class="details-container">
+        <!-- PG HEADER -->
+        <div class="pg-header">
+            <div class="pg-image-section">
+                <img src="<%= pg.imageUrl %>" alt="<%= pg.pgName %>" class="pg-image" >
+            </div>
+            <div class="pg-info">
+                <h1><%= pg.pgName %></h1>
+                <p class="location">
+                    📍 <%= pg.area %>,
+                    <%= pg.city %>,
+                    <%= pg.state %>
+                </p>
+                <div class="badges">
+                    <span class="badge">
+                        <%= pg.pgType %>
+                    </span>
+                    <span class="badge">
+                        <%= pg.gender %>
+                    </span>
+                </div>
+                <h2 class="price">
+                    ₹<%= pg.rent %>
+                    <span>/month</span>
+                </h2>
+                <p class="price-note">
+            ★ Final booking amount will be
+            calculated based on your selected
+              check-in and check-out dates.
+             </p>
+                <p class="deposit">
+                    Security Deposit:
+                    ₹<%= pg.deposit || 0 %>
+                </p>
+            </div>
+        </div>
+ <!-- BOOKING INFORMATION -->
+        <div class="section booking-info">
+            <h2>Booking Information</h2>
+            <p>
+                📧 Owner contact details, room number,
+                floor allocation and move-in instructions
+                will be shared to your registered email
+                after successful booking confirmation.
+            </p>
+            <p>
+                Availability is subject to verification
+                based on your selected check-in and
+                check-out dates.
+            </p>
+        </div>
+<!-- WHY CHOOSE THIS PG -->
+<div class="section">
+    <h2>Why Choose This PG?</h2>
+    <div class="features-grid">
+        <div class="feature-box">
+            ✓ Verified Property
+        </div>
+        <div class="feature-box">
+            ✓ Safe & Secure Environment
+        </div>
+        <div class="feature-box">
+            ✓ Affordable Pricing
+        </div>
+        <div class="feature-box">
+            ✓ Prime Location
+        </div>
+        <div class="feature-box">
+            ✓ Hassle-Free Booking
+        </div>
+        <div class="feature-box">
+            ✓ Essential Amenities Included
+        </div>
+    </div>
+</div>
+<!-- ABOUT PG -->
+        <div class="section">
+            <h2>About This PG</h2>
+            <p>
+                <%= pg.description %>
+            </p>
+        </div>
+        <!-- AMENITIES -->
+        <div class="section">
+            <h2>Amenities</h2>
+            <div class="amenities">
+                <% if(pg.amenities && pg.amenities.length > 0){ %>
+                    <% pg.amenities.forEach(amenity => { %>
+                        <span class="amenity-tag">
+                            ✓ <%= amenity %>
+                        </span>
+                    <% }) %>
+                <% } %>
+            </div>
+        </div>
+        <!-- LOCATION -->
+        <div class="section">
+            <h2>Location</h2>
+            <p>
+                📍 <%= pg.address %>
+            </p>
+            <p>
+                <%= pg.area %>,
+                <%= pg.city %>,
+                <%= pg.state %>
+            </p>
+        </div>
+        <!-- BOOK NOW -->
+        <div class="book-section">
+            <button class="book-btn" onclick="window.location.href='/confirmbooking/<%=pg._id%>'">
+                Book PG
+            </button>
+        </div>
+    </div>
+</body>
+</html>

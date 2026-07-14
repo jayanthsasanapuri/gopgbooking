@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Wishlist</title>
+
+    <link rel="stylesheet" href="/css/wishlist.css">
+    <link rel="stylesheet" href="/css/userNavbar.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+</head>
+<body>
+
+<%- include('partials/navbar') %>
+
+<div class="wishlist-container">
+
+    <div class="wishlist-header">
+
+        <h1>My Wishlist ❤️</h1>
+
+        <p>Your favourite PGs saved for later.</p>
+
+    </div>
+
+    <% if(wishlists.length > 0){ %>
+
+        <div class="wishlist-list">
+
+            <% wishlists.forEach(item => { %>
+
+                <div class="wishlist-card">
+
+                    <img
+                        src="<%= item.pgId.imageUrl %>"
+                        alt="<%= item.pgId.pgName %>"
+                        class="wishlist-image"
+                    >
+
+                    <div class="wishlist-content">
+
+                        <h2>
+                            <%= item.pgId.pgName %>
+                        </h2>
+
+                        <p class="location">
+
+                            <i class="fa-solid fa-location-dot"></i>
+
+                            <%= item.pgId.area %>,
+                            <%= item.pgId.city %>
+
+                        </p>
+
+                        <p class="type">
+
+                            <i class="fa-solid fa-building"></i>
+
+                            <%= item.pgId.pgType %>
+
+                        </p>
+
+                        <p class="gender">
+
+                            <i class="fa-solid fa-users"></i>
+
+                            <%= item.pgId.gender %>
+
+                        </p>
+
+                        <p class="price">
+
+                            ₹<%= item.pgId.rent %>
+
+                            <span>/month</span>
+
+                        </p>
+
+                        <div class="wishlist-actions">
+
+                            <a
+                                href="/viewdetails/<%= item.pgId._id %>"
+                                class="btn-view"
+                            >
+
+                                View Details
+
+                            </a>
+
+                            <form
+                                action="/wishlist/remove/<%= item.pgId._id %>"
+                                method="POST"
+                            >
+
+                                <button
+                                    class="btn-remove"
+                                    type="submit"
+                                >
+
+                                    <i class="fa-solid fa-heart-crack"></i>
+
+                                    Remove
+
+                                </button>
+
+                            </form>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            <% }) %>
+
+        </div>
+
+    <% } else { %>
+
+        <div class="empty-wishlist">
+
+            <i class="fa-regular fa-heart"></i>
+
+            <h2>No PGs in Wishlist</h2>
+
+            <p>
+
+                Save your favourite PGs and access them anytime.
+
+            </p>
+
+            <a
+                href="/card"
+                class="explore-btn"
+            >
+
+                Explore PGs
+
+            </a>
+
+        </div>
+
+    <% } %>
+
+</div>
+
+</body>
+</html>

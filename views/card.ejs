@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PG Listing Cards</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+    <link rel="stylesheet" href="/css/card.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/userNavbar.css">
+</head>
+<body>
+    <%- include('partials/navbar') %>
+<div class="welcome-banner">
+    <div class="welcome-content">
+        <h1>
+           <%if(isLoggedIn) {%> 
+            Welcome Back, <%= user.firstName %> 👋
+            <%}%>
+        </h1>
+        <p>
+            Discover verified PGs and find your perfect stay.
+        </p>    
+    </div>
+</div>
+<div class="filter-container">
+    <form
+        action="/card"
+        method="GET"
+        class="filter-bar"
+    >
+        <input
+            type="text"
+            name="search"
+            placeholder="🔍 Search PG..."
+        >
+        <select name="city">
+            <option value="">
+                📍 Location
+            </option>
+            <% locations.forEach(location => { %>
+                <option value="<%= location %>">
+                    <%= location %>
+                </option>
+            <% }) %>
+        </select>
+        <select name="rent">
+            <option value="">
+                💰 Budget
+            </option>
+            <option value="5000">
+                Under ₹5,000
+            </option>
+            <option value="10000">
+                Under ₹10,000
+            </option>
+            <option value="15000">
+                Under ₹15,000
+            </option>
+        </select>
+        <select name="gender">
+            <option value="">
+                👤 Gender
+            </option>
+            <option value="Male">
+                Male
+            </option>
+            <option value="Female">
+                Female
+            </option>
+            <option value="Unisex">
+                Unisex
+            </option>
+        </select>
+        <button
+            type="submit"
+            class="filter-btn"
+        >
+            Apply
+        </button>
+        <a
+            href="/card"
+            class="reset-btn"
+        >
+            Reset
+        </a>
+    </form>
+</div>
+    <div class="cards-grid">
+        <% if(pgs && pgs.length > 0){ %>
+            <% pgs.forEach(pg => { %>
+                <div class="card">
+                    <div class="card-img-wrap">
+                        <img
+                            src="<%= pg.imageUrl %>"
+                            alt="<%= pg.pgName %>"
+                            loading="lazy"
+                        >
+     <form
+    action="<%= wishlistSet.has(pg._id.toString()) ? '/wishlist/remove/' + pg._id : '/wishlist/add/' + pg._id %>"
+    method="POST"
+    class="wishlist-form"
+>
+    <button
+        type="submit"
+        class="btn-wishlist <%= wishlistSet.has(pg._id.toString()) ? 'active' : '' %>"
+        aria-label="Wishlist"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
+            />
+        </svg>
+    </button>
+</form>
+    <span class="badge-type badge-premium">
+             <%= pg.pgType %>
+    </span>
+    <span class="badge-gender badge-unisex">
+            <%= pg.gender.toUpperCase() %>
+     </span>
+    </div>
+     <div class="card-body">
+            <div class="card-title">
+                 <%= pg.pgName %>
+            </div>
+            <div class="card-location">
+             📍 <%= pg.area %>, <%= pg.city %>, <%= pg.state %>
+            </div>
+            <div class="tags">
+             <% if(pg.amenities && pg.amenities.length > 0){ %>
+                  <% pg.amenities.forEach(amenity => { %>
+                      <span class="tag">
+                          <%= amenity %>
+                      </span>
+              <% }) %>
+          <% } %>
+        </div>
+        <div class="card-footer">
+                <div class="price-wrap">
+                                <span class="price-label">
+                                    Starts at
+                                </span>
+                                <span class="price">
+                                    ₹<%= pg.rent %>
+                                    <span>/mo</span>
+                                </span>
+                            </div>
+                            <a
+                                href="/viewdetails/<%=pg.id%>"
+                                class="btn-view"
+                            >
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <h2 style="text-align:center; margin-top:50px;">
+                No PG Listings Available
+            </h2>
+        <% } %>
+    </div>
+    <script>
+    window.addEventListener("pageshow", function(event){
+    if(event.persisted){
+        window.location.reload();
+    }
+});
+</script>
+</body>
+</html>

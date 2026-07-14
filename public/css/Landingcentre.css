@@ -1,0 +1,45 @@
+.centre-section{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white; 
+  max-width:900px;
+}
+.tag-name{
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: 1px solid black;
+  background: rgba(255,255,255,0.08);
+  font-size: 25px;
+
+}
+.centre-title{
+  font-size: 60px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  margin-left:-90px;
+}
+.green{
+   background: linear-gradient(90deg,#22c55e,#16a34a);
+   -webkit-background-clip: text;
+  color: transparent;
+}
+.centre-description{
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+.centre-btn{
+  margin-top: 20px;
+  width:100%;
+}
+.explorepg-btn{
+  padding: 10px 20px;
+  border-radius: 25px;;
+  background: linear-gradient(90deg,#22c55e,#16a34a);
+  color: white;
+  font-size:25px; 
+
+}

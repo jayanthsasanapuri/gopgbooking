@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings | Admin</title>
+
+    <link rel="stylesheet" href="/css/adminDashboard.css">
+    <link rel="stylesheet" href="/css/bookings.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+<div class="admin-layout">
+    <%- include('../partials/adminSidebar') %>
+    <div class="main-content">
+        <h1 class="page-title">
+            Bookings
+        </h1>
+        <% if(bookings.length === 0){ %>
+            <div class="empty-bookings">
+                <h2>No Bookings Found</h2>
+                <p>No user has booked any PG yet.</p>
+            </div>
+        <% } else { %>
+        <div class="booking-card">
+            <table class="booking-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                        <th>PG</th>
+                        <th>Check In</th>
+                        <th>Check Out</th>
+                        <th>Total</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% bookings.forEach(booking => { %>
+                    <tr>
+                        <!-- USER NAME -->
+                        <td class="user-name">
+                            <% if (booking.userId) { %>
+                                <%= booking.userId.firstName %>
+                                <%= booking.userId.lastName %>
+                            <% } else { %>
+                                <span style="color:red;">
+                                    User Deleted
+                                </span>
+                            <% } %>
+                        </td>
+                       <!-- EMAIL -->
+                        <td>
+                            <% if (booking.userId) { %>
+                                <%= booking.userId.email %>
+                            <% } else { %>
+                                -
+                            <% } %>
+                        </td>
+                        <!-- PHONE -->
+                        <td>
+                            <%= booking.mobileNumber %>
+
+                        </td>
+                        <!-- PG -->
+                        <td class="pg-name">
+                            <% if (booking.pgId) { %>
+                                <%= booking.pgId.pgName %>
+                            <% } else { %>
+                                <span style="color:red;">
+                                    PG Deleted
+                                </span>
+                            <% } %>
+                        </td>
+                        <!-- CHECK IN -->
+                        <td>
+                            <%= booking.checkIn.toDateString() %>
+                        </td>
+                        <!-- CHECK OUT -->
+                        <td>
+                            <%= booking.checkOut.toDateString() %>
+                        </td>
+                        <!-- TOTAL -->
+                        <td class="amount">
+                            ₹<%= booking.totalAmount %>
+                        </td>
+                        <!-- STATUS -->
+                        <td>
+                            <span class="status confirmed">
+                                <%= booking.bookingStatus %>
+                            </span>
+                        </td>
+                    </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+        <% } %>
+    </div>
+</div>
+</body>
+</html>

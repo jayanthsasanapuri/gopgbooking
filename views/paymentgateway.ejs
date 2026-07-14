@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+    <title>Secure Payment | GoPGBooking</title>
+    <link rel="stylesheet" href="/css/paymentgateway.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+<div class="gateway-container">
+    <!-- HEADER -->
+    <div class="gateway-header">
+        <h2>
+            <span class="green">GoPG</span>Booking
+        </h2>
+        <div class="timer">
+            <i class="fas fa-clock"></i>
+            <span id="countdown">10:00</span>
+        </div>
+    </div>
+    <div class="gateway-layout">
+      <!-- LEFT -->
+        <div class="payment-section">
+            <h2>
+                Complete Your Payment
+            </h2>
+            <p>
+                Choose your preferred payment method.
+            </p>
+            <div class="method-buttons">
+           <button class="method-btn active"  onclick="showMethod('upi',event)">
+                      <i class="fas fa-mobile-alt"></i>
+                       UPI
+          </button>
+          <button class="method-btn" onclick="showMethod('card',event)">
+                    <i class="far fa-credit-card"></i>
+                    Card
+          </button>
+                <button class="method-btn" onclick="showMethod('bank',event)">
+                    <i class="fas fa-university"></i>
+                    Net Banking
+                </button>
+            </div>
+            <!-- UPI -->
+            <div  id="upi" class="payment-box">
+                <img
+                    src="https://api.qrserver.com/v1/create-qr-code/?size=240x240&data=GoPGBooking"
+                    alt="QR Code"
+                >
+                <p>
+                    Scan using Google Pay, PhonePe, Paytm or any UPI app.
+                </p>
+            </div>
+            <!-- CARD -->
+            <div id="card" class="payment-box" style="display:none;">
+                <input type="text" placeholder="Card Number">
+                <input type="text" placeholder="Card Holder Name">
+                <div class="card-row">
+                <input type="text" placeholder="MM / YY">
+                <input type="password" placeholder="CVV"                    >
+                </div>
+            </div>
+            <!-- NET BANKING -->
+            <div id="bank" class="payment-box" style="display:none;">
+                <select>
+                    <option>Select Bank</option>
+                    <option>SBI</option>
+                    <option>HDFC</option>
+                    <option>ICICI</option>
+                    <option>Axis Bank</option>
+                    <option>Kotak Mahindra</option>
+                </select>
+            </div>
+        </div>
+        <!-- RIGHT -->
+        <div class="summary-card">
+            <h2>
+                Booking Summary
+            </h2>
+            <div class="summary-row">
+                <span>PG Name</span>
+                <strong>
+                    <%= pg.pgName %>
+                </strong>
+            </div>
+            <div class="summary-row">
+                <span>Check-In</span>
+                <strong>
+                    <%= booking.checkIn %>
+                </strong>
+            </div>
+            <div class="summary-row">
+                <span>Check-Out</span>
+                <strong>
+                    <%= booking.checkOut %>
+                </strong>
+            </div>
+            <div class="summary-row">
+                <span>Duration</span>
+                <strong>
+                    <%= booking.days %> Days
+                </strong>
+            </div>
+            <div class="summary-row">
+                <span>Rent</span>
+                <strong>
+                    ₹<%= booking.rentAmount %>
+                </strong>
+            </div>
+            <div class="summary-row">
+                <span>Security Deposit</span>
+                <strong>
+                    ₹<%= pg.deposit || 0 %>
+                </strong>
+            </div>
+            <hr>
+            <div class="summary-total">
+                <span>Total Amount</span>
+                <strong>
+                    ₹<%= booking.totalAmount %>
+                </strong>
+            </div>
+            <form action="/paymentsuccess/<%= pg._id %>" method="POST">
+                <button class="confirm-btn" type="submit">
+                    <i class="fas fa-lock"></i>
+                    Confirm Payment
+                </button>
+            </form>
+            <p class="secure-text">
+                <i class="fas fa-shield-alt"></i>
+                Your payment is secured by GoPGBooking.
+            </p>
+        </div>
+    </div>
+</div>

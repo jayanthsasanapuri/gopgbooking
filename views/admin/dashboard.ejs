@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GoPGBooking Admin Dashboard</title>
+    <link rel="stylesheet" href="/css/adminDashboard.css">
+</head>
+<body>
+<div class="admin-layout">
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="sidebar-logo">
+            <div class="logo-box">
+                🏠
+            </div>
+            <div>
+                <h2>GoPG</h2>
+                <p>Admin Panel</p>
+            </div>
+        </div>
+        <div class="sidebar-section">
+            OVERVIEW
+        </div>
+        <ul class="sidebar-menu">
+            <li class="active">
+                <a href="#">
+                    📊 Dashboard
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    📈 Analytics
+                </a>
+            </li>
+
+        </ul>
+        <div class="sidebar-section">
+            MANAGEMENT
+        </div>
+
+        <ul class="sidebar-menu">
+            <li>
+                <a href="/admin/pgs">
+                    🏢 PG Listings
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    📅 Bookings
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    👥 Customers
+                </a>
+            </li>
+
+            <li>
+                <a href="#">
+                    👨‍💼 Supervisors
+                </a>
+            </li>
+
+        </ul>
+
+        <div class="sidebar-section">
+            SETTINGS
+        </div>
+
+        <ul class="sidebar-menu">
+
+            <li>
+                <a href="/card">
+                    🌐 View Site
+                </a>
+            </li>
+
+            <li>
+                <a href="/logout">
+                    🚪 Logout
+                </a>
+            </li>
+
+        </ul>
+
+    </aside>
+    <!-- MAIN CONTENT -->
+    <main class="main-content">
+            <% if(successMessage){ %>
+
+        <div class="success-alert">
+            ✅ <%= successMessage %>
+        </div>
+
+    <% } %>
+        <div class="top-header">
+            <div>
+                <h1>
+                    Welcome Back, Admin 👋
+                </h1>
+                <p>
+                    Manage PGs, bookings, users and supervisors.
+                </p>
+            </div>
+            <button class="add-btn" onclick="window.location.href='addnewpg'">
+                + Add New PG
+            </button>
+        </div>
+        <!-- STATS -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h2>1,284</h2>
+                <p>Total Users</p>
+            </div>
+            <div class="stat-card">
+                <h2>47</h2>
+                <p>PG Listings</p>
+            </div>
+            <div class="stat-card">
+                <h2>932</h2>
+                <p>Total Bookings</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>12</h2>
+                <p>Supervisors</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>218</h2>
+                <p>Active Bookings</p>
+            </div>
+
+            <div class="stat-card">
+                <h2>34</h2>
+                <p>Pending Bookings</p>
+            </div>
+
+        </div>
+
+        <!-- RECENT BOOKINGS -->
+        <div class="dashboard-card">
+            <h2>
+                Recent Bookings
+            </h2>
+            <table>
+                <tr>
+                    <th>Customer</th>
+                    <th>PG</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                </tr>
+                <tr>
+                    <td>Rahul Sharma</td>
+                    <td>Sunrise Boys PG</td>
+                    <td>10 Jun 2026</td>
+                    <td class="status-active">Active</td>
+                </tr>
+                <tr>
+                    <td>Priya Singh</td>
+                    <td>Rose Garden PG</td>
+                    <td>12 Jun 2026</td>
+                    <td class="status-pending">Pending</td>
+                </tr>
+            </table>
+        </div>
+    </main>
+</div>
+</body>
+</html>

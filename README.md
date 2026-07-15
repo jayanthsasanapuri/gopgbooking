@@ -21,7 +21,7 @@
 
 Users can search PGs based on their preferred city, area, budget, gender, and accommodation type, view detailed property information, save their favorite PGs to a wishlist, and complete bookings online through a secure and user-friendly interface.
 
-For PG owners and administrators, GoPGBooking provides a dedicated dashboard to manage PG listings, update property details, monitor bookings, and maintain accommodation information efficiently. By bringing users and PG owners together on one platform, GoPGBooking offers a transparent, convenient, and brokerage-free accommodation booking experience.
+For PG owners and administrators, **GoPGBooking** provides a dedicated dashboard to manage PG listings, update property details, monitor bookings, and maintain accommodation information efficiently. By bringing users and PG owners together on one platform, **GoPGBooking** offers a transparent, convenient, and brokerage-free accommodation booking experience.
 ---
 
 # ✨ Features
@@ -58,53 +58,40 @@ For PG owners and administrators, GoPGBooking provides a dedicated dashboard to 
 ---
 
 # 🖼️ Screenshots
+
 ### 🏠 Home Page
 
-```
-/screenshots/home.png
-```
+![Home Page](screenshots/home.png)
 
 ---
 
 ### 🔑 Login Page
 
-```
-/screenshots/login.png
-```
+![Login Page](screenshots/login.png)
 
 ---
 
 ### 📋 PG Listings
 
-```
-/screenshots/listings.png
-```
+![PG Listings](screenshots/listings.png)
 
 ---
 
 ### ❤️ Wishlist
 
-```
-/screenshots/wishlist.png
-```
+![Wishlist](screenshots/wishlist.png)
 
 ---
 
 ### 📅 My Bookings
 
-```
-/screenshots/bookings.png
-```
+![My Bookings](screenshots/bookings.png)
 
 ---
 
 ### 🛠️ Admin Dashboard
 
-```
-/screenshots/admin-dashboard.png
-```
-
----
+![Admin Dashboard](screenshots/admin-dashboard.png)
 
 # 🛠️ Tech Stack
 

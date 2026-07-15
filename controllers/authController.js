@@ -1,7 +1,6 @@
 const User = require('../models/UserModel');
 const bcrypt = require('bcryptjs');
-const transporter = require("../config/mailer");
-const nodemailer = require("nodemailer");
+const resend = require("../config/mailer");
 exports.getLogin = (req,res,next) =>{
     res.render('auth/Login',{error:null,isLoggedIn:false});
 }
@@ -88,44 +87,43 @@ exports.postForgotPassword = async (req, res, next) => {
     user.otp = otp;
     user.otpExpiry = Date.now()+5*60*1000;
     await user.save();
-    await transporter.sendMail({
-            from: `"gopgbooking" <${process.env.EMAIL}>`,
-            to: user.email,
-            subject: "gopgbooking Password Reset OTP",
-            html: `
-                <div style="font-family:Arial,sans-serif;padding:20px">
-                    <h2 style="color:#16a34a">
-                        gopgbooking
-                    </h2>
-                    <p>
-                        Hello ${user.firstName},
-                    </p>
-                    <p>
-                        You requested to reset your password.
-                    </p>
-                    <p>
-                        Your OTP is:
-                    </p>
-                    <h1 style="letter-spacing:5px;color:#16a34a">
-                        ${otp}
-                    </h1>
-                    <p>
-                        This OTP is valid for
-                      <strong>5 minutes</strong>.
-                    </p>
-                    <p>
-                        Do not share this OTP with anyone.
-                    </p>
-                    <br>
-                    <p>
-                        Regards,
-                    </p>
-                    <p>
-                        <strong>GoPGBooking Team</strong>
-                    </p>
-                </div>
-            `
-    });
+    await resend.emails.send({
+    from: "GoPGBooking <onboarding@resend.dev>",
+    to: user.email,
+    subject: "gopgbooking Password Reset OTP",
+    html: `
+        <div style="font-family: Arial, sans-serif; padding: 20px;">
+            <h2 style="color:#16a34a;">
+                GoPGBooking
+            </h2>
+            <p>Hello <strong>${user.firstName}</strong>,</p>
+
+            <p>You requested to reset your password.</p>
+
+            <p>Your OTP is:</p>
+
+            <h1 style="letter-spacing:5px; color:#16a34a;">
+                ${otp}
+            </h1>
+
+            <p>
+                This OTP is valid for <strong>5 minutes</strong>.
+            </p>
+
+            <p>
+                Please do not share this OTP with anyone.
+            </p>
+
+            <br>
+
+            <p>Regards,</p>
+
+            <p>
+                <strong>GoPGBooking Team</strong>
+            </p>
+        </div>
+    `
+});
     res.redirect("/verify-otp?email=" + encodeURIComponent(user.email));
    }
    catch(err){

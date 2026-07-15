@@ -1,27 +1,27 @@
 # 🏠 GoPGBooking
 
-> **A Modern Full-Stack PG Booking Platform** built with **Node.js, Express.js, MongoDB, and EJS** that helps users discover, compare, and book verified Paying Guest accommodations seamlessly.
+> > **GoPGBooking** is a full-stack web application built with **Node.js, Express.js, MongoDB, and EJS** that enables users to discover, compare, and book verified Paying Guest (PG) accommodations through a secure, user-friendly, and responsive platform.
 
 ---
 
 ## 🚀 Live Demo
 
-🔗 **Website:** `YOUR_LIVE_LINK`
+🔗 **Website:** `https://gopgbooking.onrender.com`
 
 ---
 
 ## 💻 GitHub Repository
 
-🔗 `YOUR_GITHUB_LINK`
+🔗 `https://github.com/jayanthsasanapuri/gopgbooking`
 
 ---
+## Overview
 
-# 📖 Overview
+**GoPGBooking** is a production-inspired **Paying Guest (PG) booking platform** that connects users directly with verified PG owners, eliminating the need for brokers and brokerage fees. The platform simplifies the process of finding suitable accommodation by allowing users to explore PGs across different locations, compare available options, and book rooms through a single platform.
 
-GoPGBooking is a production-inspired PG booking platform designed to simplify the process of finding and booking Paying Guest accommodations.
+Users can search PGs based on their preferred city, area, budget, gender, and accommodation type, view detailed property information, save their favorite PGs to a wishlist, and complete bookings online through a secure and user-friendly interface.
 
-The platform allows users to search verified PGs, view detailed information, filter listings based on preferences, maintain a wishlist, and book rooms online. It also provides an admin dashboard for managing PG listings and monitoring bookings.
-
+For PG owners and administrators, GoPGBooking provides a dedicated dashboard to manage PG listings, update property details, monitor bookings, and maintain accommodation information efficiently. By bringing users and PG owners together on one platform, GoPGBooking offers a transparent, convenient, and brokerage-free accommodation booking experience.
 ---
 
 # ✨ Features
@@ -43,11 +43,8 @@ The platform allows users to search verified PGs, view detailed information, fil
 - ✅ Payment Summary
 - ✅ Booking Confirmation
 - ✅ My Bookings
-- ✅ Responsive User Dashboard
 - ✅ Logout
-
 ---
-
 ## 🛠️ Admin Features
 
 - ✅ Secure Admin Login
@@ -61,9 +58,6 @@ The platform allows users to search verified PGs, view detailed information, fil
 ---
 
 # 🖼️ Screenshots
-
-> Add screenshots after deployment.
-
 ### 🏠 Home Page
 
 ```
@@ -182,66 +176,85 @@ GoPGBooking/
 
 ---
 
-# ⚙️ Installation
+# ⚙️ Installation & Setup
 
-Clone the repository
-
-```bash
-git clone YOUR_GITHUB_LINK
-```
-
-Move into the project
+### 1. Clone the Repository
 
 ```bash
-cd GoPGBooking
+git clone https://github.com/jayanthsasanapuri/gopgbooking.git
 ```
 
-Install dependencies
+### 2. Navigate to the Project Directory
+
+```bash
+cd gopgbooking
+```
+
+### 3. Install Dependencies
 
 ```bash
 npm install
 ```
 
-Create a `.env` file
+### 4. Configure Environment Variables
+
+Create a `.env` file in the project root and add the following variables:
 
 ```env
 MONGO_URI=your_mongodb_connection_string
 
-SESSION_SECRET=your_secret
+SESSION_SECRET=your_session_secret
 
 GOOGLE_CLIENT_ID=your_google_client_id
 
 GOOGLE_CLIENT_SECRET=your_google_client_secret
 
-EMAIL=your_email
+GOOGLE_CALLBACK_URL=http://localhost:3000/auth/google/callback
+
+EMAIL=your_email_address
 
 EMAIL_PASSWORD=your_email_password
+
+ADMIN_EMAIL=your_admin_email
+
+ADMIN_PASSWORD=your_admin_password
 ```
 
-Run the project
+### 5. Start the Application
+
+For development:
+
+```bash
+npm run dev
+```
+
+For production:
 
 ```bash
 npm start
 ```
 
-Open your browser
+### 6. Access the Application
 
-```
+Open your browser and visit:
+
+```text
 http://localhost:3000
 ```
-
----
 
 # 🔐 Environment Variables
 
 | Variable | Description |
 |----------|-------------|
-| MONGO_URI | MongoDB Atlas Connection String |
-| SESSION_SECRET | Express Session Secret |
-| GOOGLE_CLIENT_ID | Google OAuth Client ID |
-| GOOGLE_CLIENT_SECRET | Google OAuth Client Secret |
-| EMAIL | Email used for OTP |
-| EMAIL_PASSWORD | App Password |
+| MONGO_URI | MongoDB Atlas connection string used to connect the application to the database. |
+| SESSION_SECRET | Secret key used to securely sign and manage Express session cookies. |
+| GOOGLE_CLIENT_ID | Google OAuth Client ID for Google Sign-In authentication. |
+| GOOGLE_CLIENT_SECRET | Google OAuth Client Secret for Google Sign-In authentication. |
+| GOOGLE_CALLBACK_URL | Google OAuth callback URL used to handle authentication responses. |
+| EMAIL | Email address used to send OTPs and application notifications. |
+| EMAIL_PASSWORD | App password for the configured email account. |
+| ADMIN_EMAIL | Email address used for administrator login. |
+| ADMIN_PASSWORD | Password used for administrator authentication. |
 
 ---
 
@@ -266,9 +279,7 @@ http://localhost:3000
 - 🗺️ Google Maps Integration
 - 💳 Online Payment Gateway
 - 📧 Email Booking Confirmation
-- 🔔 Push Notifications
 - 📱 Progressive Web App (PWA)
-- 🌙 Dark Mode
 - 🤖 AI-based PG Recommendation System
 - 📊 Admin Analytics Dashboard
 
@@ -276,14 +287,6 @@ http://localhost:3000
 
 # 👨‍💻 Author
 
-**Sasa Jayanth**
-
-LinkedIn: `YOUR_LINKEDIN_PROFILE`
-
-GitHub: `YOUR_GITHUB_LINK`
-
+**Sasanapuri Jayanth**
+LinkedIn: `https://www.linkedin.com/in/sasanapuri-jayanth/`
 ---
-
-# 📜 License
-
-This project is created for educational and portfolio purposes.

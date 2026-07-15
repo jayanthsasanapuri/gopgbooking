@@ -87,43 +87,22 @@ exports.postForgotPassword = async (req, res, next) => {
     user.otp = otp;
     user.otpExpiry = Date.now()+5*60*1000;
     await user.save();
-    await resend.emails.send({
-    from: "GoPGBooking <onboarding@resend.dev>",
-    to: user.email,
-    subject: "gopgbooking Password Reset OTP",
-    html: `
-        <div style="font-family: Arial, sans-serif; padding: 20px;">
-            <h2 style="color:#16a34a;">
-                GoPGBooking
-            </h2>
-            <p>Hello <strong>${user.firstName}</strong>,</p>
+    console.log("========== RESEND ==========");
+console.log("API Key Loaded:", !!process.env.RESEND_API_KEY);
+console.log("Sending OTP to:", user.email);
 
-            <p>You requested to reset your password.</p>
+try {
+    const response = await resend.emails.send({
+        from: "GoPGBooking <onboarding@resend.dev>",
+        to: user.email,
+        subject: "Test Email",
+        html: "<h1>Hello from Resend</h1>"
+    });
 
-            <p>Your OTP is:</p>
-
-            <h1 style="letter-spacing:5px; color:#16a34a;">
-                ${otp}
-            </h1>
-
-            <p>
-                This OTP is valid for <strong>5 minutes</strong>.
-            </p>
-
-            <p>
-                Please do not share this OTP with anyone.
-            </p>
-
-            <br>
-
-            <p>Regards,</p>
-
-            <p>
-                <strong>GoPGBooking Team</strong>
-            </p>
-        </div>
-    `
-});
+    console.log("Resend Response:", response);
+} catch (err) {
+    console.error("Resend Error:", err);
+}
     res.redirect("/verify-otp?email=" + encodeURIComponent(user.email));
    }
    catch(err){

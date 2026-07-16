@@ -1,0 +1,126 @@
+/* Verify OTP specific styling — extends auth.css theme */
+
+.otp-icon-wrap {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 18px;
+}
+.otp-icon {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, rgba(34,197,94,.18), rgba(22,163,74,.12));
+    border: 1px solid rgba(34,197,94,.35);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.otp-container {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    margin: 32px 0 8px;
+}
+
+.otp-input {
+    width: 58px;
+    height: 64px;
+    border: 2px solid rgba(255,255,255,.12);
+    border-radius: 14px;
+    background: rgba(255,255,255,.05);
+    color: #f9fafb;
+    text-align: center;
+    font-size: 26px;
+    font-weight: 700;
+    outline: none;
+    transition: .2s ease;
+    caret-color: #22c55e;
+}
+
+.otp-input:focus {
+    border-color: #22c55e;
+    background: rgba(255,255,255,.08);
+    box-shadow: 0 0 0 4px rgba(34,197,94,.16);
+    transform: translateY(-2px);
+}
+
+.otp-input.filled {
+    border-color: rgba(34,197,94,.5);
+    background: rgba(34,197,94,.06);
+}
+
+.otp-input::selection {
+    background: rgba(34,197,94,.35);
+}
+
+.otp-timer {
+    text-align: center;
+    margin: 4px 0 6px;
+    font-size: 13.5px;
+    color: #9ca3af;
+}
+
+.otp-timer span {
+    color: #22c55e;
+    font-weight: 700;
+}
+
+.otp-footer {
+    margin-top: 24px;
+    text-align: center;
+    color: #9ca3af;
+    font-size: 14px;
+}
+
+.otp-footer a {
+    color: #22c55e;
+    text-decoration: none;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.otp-footer a:hover {
+    text-decoration: underline;
+}
+
+.otp-footer a.disabled {
+    color: #4b5563;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+/* Shake animation for invalid OTP */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20% { transform: translateX(-8px); }
+    40% { transform: translateX(8px); }
+    60% { transform: translateX(-6px); }
+    80% { transform: translateX(6px); }
+}
+.otp-container.shake .otp-input {
+    animation: shake .4s ease;
+    border-color: #ef4444;
+}
+
+@media (max-width: 480px) {
+    .otp-container {
+        gap: 8px;
+    }
+    .otp-input {
+        width: 46px;
+        height: 54px;
+        font-size: 21px;
+    }
+}
+@media (max-width: 360px) {
+    .otp-container {
+        gap: 6px;
+    }
+    .otp-input {
+        width: 40px;
+        height: 48px;
+        font-size: 18px;
+    }
+}
